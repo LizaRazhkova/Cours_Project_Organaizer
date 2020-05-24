@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище Organaizer_v2Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Gallery">
+    <Key>
+      <PropertyRef Name="IdImage" />
+    </Key>
+    <Property Name="IdImage" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" />
+    <Property Name="FileName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Data" Type="image" />
+  </EntityType>
+  <EntityType Name="ManagerPass">
+    <Key>
+      <PropertyRef Name="IdManagerPass" />
+    </Key>
+    <Property Name="IdManagerPass" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" />
+    <Property Name="Login" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="SocialNetwork" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TaskManager">
+    <Key>
+      <PropertyRef Name="IdTaskManager" />
+    </Key>
+    <Property Name="IdTaskManager" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id" Type="int" />
+    <Property Name="IsDone" Type="bit" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="Category" Type="nvarchar" MaxLength="20" />
+    <Property Name="Priority" Type="int" />
+    <Property Name="Date" Type="date" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameUser" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_Gallery">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="Gallery" Type="Self.Gallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Gallery">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ManagerPass">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="ManagerPass" Type="Self.ManagerPass" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="ManagerPass">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TaskManager">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="TaskManager" Type="Self.TaskManager" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="TaskManager">
+        <PropertyRef Name="Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище Organaizer_v2ModelContainer">
+    <EntitySet Name="Gallery" EntityType="Self.Gallery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ManagerPass" EntityType="Self.ManagerPass" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TaskManager" EntityType="Self.TaskManager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Gallery" Association="Self.FK_Gallery">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Gallery" EntitySet="Gallery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ManagerPass" Association="Self.FK_ManagerPass">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="ManagerPass" EntitySet="ManagerPass" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TaskManager" Association="Self.FK_TaskManager">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TaskManager" EntitySet="TaskManager" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

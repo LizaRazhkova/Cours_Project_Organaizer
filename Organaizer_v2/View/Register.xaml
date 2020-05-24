@@ -1,0 +1,39 @@
+﻿<Page x:Class="Organaizer_v2.View.Register"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Organaizer_v2.View"
+      mc:Ignorable="d" 
+      DataContext="{Binding RegisterViewModel, Source={StaticResource ViewModelContainer}}"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Height="600" Width="700"
+      Title="Register">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" VerticalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" FontSize="23" Text="Регистрация"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1" MaxWidth="350" Margin="30 0">
+            <Label FontSize="15">Имя пользователя</Label>
+            <TextBox Text="{Binding Username}"/>
+            <Label Margin="0 10 0 0" FontSize="15">Пароль</Label>
+            <TextBox Text="{Binding Password}"/>
+            <Label Margin="0 10 0 0" FontSize="15">Подтвердить пароль</Label>
+            <TextBox Text="{Binding ConfirmPassword}"/>
+            <Button Margin="0 30 0 0" Background="Transparent" Foreground="Black"
+                FontSize="17" Padding="5" Command="{Binding CreateNewAccount}">
+                Создать аккаунт
+            </Button>
+            <TextBlock HorizontalAlignment="Center" Margin="0 30 0 0">
+                    <Hyperlink Command="{Binding GoToLoginAccount}">Уже есть аккаунт</Hyperlink>
+            </TextBlock>
+        </StackPanel>
+    </Grid>
+</Page>

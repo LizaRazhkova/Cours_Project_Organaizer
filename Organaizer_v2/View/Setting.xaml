@@ -1,0 +1,67 @@
+﻿<Page x:Class="Organaizer_v2.View.Setting"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Organaizer_v2.View"
+      mc:Ignorable="d" 
+      DataContext="{Binding SettingViewModel, Source={StaticResource ViewModelContainer}}"
+      d:DesignHeight="450" d:DesignWidth="800"
+      Height="600" Width="700"
+      Title="Setting">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.8*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0" VerticalAlignment="Center">
+            <TextBlock HorizontalAlignment="Center" FontSize="23" Text="Настройки"/>
+        </Grid>
+
+        <Grid Grid.Row="1" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Width="350" HorizontalAlignment="Right">
+                <Label FontSize="15">Новое имя пользователя</Label>
+                <TextBox Text="{Binding Username}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
+                <Button Width="100" Command="{Binding ChangedName}">Сохранить</Button>
+            </StackPanel>
+        </Grid>
+
+        <Grid Grid.Row="2" VerticalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <StackPanel Grid.Column="0" Width="350" HorizontalAlignment="Right">
+                <Label FontSize="15">Старый пароль</Label>
+                <TextBox Text="{Binding OldPassword}"/>
+                <Label Margin="0 10 0 0" FontSize="15">Новый пароль</Label>
+                <TextBox Text="{Binding Password}"/>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Bottom">
+                <Button Width="100" Command="{Binding ChangedPassword}">Сохранить</Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" Width="350" HorizontalAlignment="Right">
+                <Button Command="{Binding ComeBack}">Вернуться назад</Button>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

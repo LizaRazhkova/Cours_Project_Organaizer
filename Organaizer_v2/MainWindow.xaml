@@ -1,0 +1,47 @@
+﻿<Window x:Class="Organaizer_v2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Organaizer_v2"
+        mc:Ignorable="d"
+        DataContext="{Binding MainViewModel, Source={StaticResource ViewModelContainer}}"
+        Title="MainWindow" Height="600" Width="700" Background="White" ResizeMode="NoResize">
+    <Window.Resources>
+        <ControlTemplate x:Key="NotificationTemplate">
+            <Border Background="#fad543"
+                    CornerRadius="4"
+                    Name="AuthError"
+                    Margin="0 0 0 10"
+                    Padding="5 5"
+                    Width="300">
+                <Border.Effect>
+                    <DropShadowEffect BlurRadius="0" Color="LightGray" Direction="-90" ShadowDepth="3"/>
+                </Border.Effect>
+                <TextBlock Text="{Binding Notification.Message, UpdateSourceTrigger=PropertyChanged}" 
+                    TextWrapping="Wrap"
+                    FontWeight="DemiBold"
+                    HorizontalAlignment="Center"
+                    FontSize="19"
+                    Foreground="White"
+                    />
+            </Border>
+            <ControlTemplate.Triggers>
+                <DataTrigger Binding="{Binding IsNotify}" Value="false">
+                    <Setter TargetName="AuthError" Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding IsNotify}" Value="true">
+                    <Setter TargetName="AuthError" Property="Visibility" Value="Visible" />
+                </DataTrigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+    
+    <Grid>
+        <Canvas HorizontalAlignment="Center" Panel.ZIndex="100">
+            <ContentControl Canvas.ZIndex="100" Canvas.Top="40" 
+                Canvas.Left="-150" Template="{StaticResource NotificationTemplate}"/>
+        </Canvas>
+        <Frame Content="{Binding FrameSource}" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

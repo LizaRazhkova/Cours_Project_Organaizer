@@ -1,0 +1,43 @@
+﻿<Window x:Class="Organaizer_v2.Window.Timer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Organaizer_v2.Window"
+        mc:Ignorable="d"
+         Title="Timer" Height="140" Width="380">
+    <Grid Background="{DynamicResource BackStyle}">
+        <Grid Margin="0 17 0 0">
+            <Label Content="Звуковой сигнал" FontSize="19" 
+                FontWeight="Bold"  Margin="15 0 0 0"/>
+            <materialDesign:TimePicker
+                Is24Hours="True" FontSize="15"
+                x:Name="PresetTimePicker"
+                VerticalAlignment="Top"
+                Width="150" Margin="0 0 10 0"
+                HorizontalAlignment="Right"
+                WithSeconds="True"
+                materialDesign:HintAssist.Hint="Выберите время"/>
+        </Grid>
+        <Button Content="Старт" IsEnabled="{Binding EditorEnabled}" 
+                Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                Name="StartButton" Click="Start_Click"
+                ToolTip="MaterialDesignFlatLightButton"
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                Margin="20 0 0 10" Padding="13 2 13 5"
+                FontSize="20" FontWeight="Bold" />
+        <Button Content="Отмена" IsEnabled="False" 
+                Style="{StaticResource MaterialDesignFlatLightBgButton}"
+                Name="EndButton" Click="End_Click"
+                ToolTip="MaterialDesignFlatLightButton"
+                HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                Margin="0 0 0 10" Padding="13 2 13 5"
+                FontSize="20" FontWeight="Bold"/>
+        <TextBlock x:Name="TimerFiled" Text="" 
+                FontSize="17" FontWeight="DemiBold"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Margin="0,0,57.6,14.4"/>
+    </Grid>
+</Window>
